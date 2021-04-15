@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AJAX GET Request</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        text-align: center;
+        background: linear-gradient(90deg, #1f1c2c, #928dab);
+      }
+      .styling {
+        width: fit-content;
+        padding: 1rem;
+        padding-bottom: 0.3rem;
+        margin: 1rem auto;
+        border-style: double;
+        border-radius: 10px;
+        font-family: "Courier New", Courier, monospace;
+        font-weight: 700;
+        font-size: 1rem;
+        color: rgb(83, 24, 24);
+        background: linear-gradient(90deg, #fc354c, #0abfbc);
+      }
+      .styling img {
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      var xmlhttp = new XMLHttpRequest();
+      var data;
+      xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          data = JSON.parse(this.responseText);
+          var userArr = data.data;
+          userArr.map((obj) => {
+            var datadiv = document.createElement("div");
+            var userimg = document.createElement("IMG");
+            var username = document.createElement("p");
+            username.appendChild(
+              document.createTextNode(obj.first_name + " " + obj.last_name)
+            );
+            userimg.setAttribute("src", obj.avatar);
+            datadiv.appendChild(userimg);
+            datadiv.appendChild(username);
+            datadiv.classList.add("styling");
+            document.body.appendChild(datadiv);
+          });
+        }
+      };
+      xmlhttp.open("GET", "https://reqres.in/api/users", true);
+      xmlhttp.send();
+    </script>
+  </body>
+</html>

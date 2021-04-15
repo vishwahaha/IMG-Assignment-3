@@ -1,59 +1,32 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <title>AJAX GET Request</title>
-    <style>
-      html,
-      body {
-        height: 100%;
-        width: 100%;
-        margin: 0;
-        text-align: center;
-        background: linear-gradient(90deg, #1f1c2c, #928dab);
-      }
-      .styling {
-        width: fit-content;
-        padding: 1rem;
-        padding-bottom: 0.3rem;
-        margin: 1rem auto;
-        border-style: double;
-        border-radius: 10px;
-        font-family: "Courier New", Courier, monospace;
-        font-weight: 700;
-        font-size: 1rem;
-        color: rgb(83, 24, 24);
-        background: linear-gradient(90deg, #fc354c, #0abfbc);
-      }
-      .styling img {
-        border-radius: 50%;
-      }
-    </style>
-  </head>
-  <body>
-    <script>
-      var xmlhttp = new XMLHttpRequest();
-      var data;
-      xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          data = JSON.parse(this.responseText);
-          var userArr = data.data;
-          userArr.map((obj) => {
-            var datadiv = document.createElement("div");
-            var userimg = document.createElement("IMG");
-            var username = document.createElement("p");
-            username.appendChild(
-              document.createTextNode(obj.first_name + " " + obj.last_name)
-            );
-            userimg.setAttribute("src", obj.avatar);
-            datadiv.appendChild(userimg);
-            datadiv.appendChild(username);
-            datadiv.classList.add("styling");
-            document.body.appendChild(datadiv);
-          });
-        }
-      };
-      xmlhttp.open("GET", "https://reqres.in/api/users", true);
-      xmlhttp.send();
-    </script>
-  </body>
+    <head>
+        <title>
+            All assignment links
+        </title>
+    </head>
+    <body>
+        <a href="ajax-get/index.html">AJAX GET Request</a>
+        <a href="ajax-post/index.html">AJAX POST Request</a>
+        <a href="sign-up-form/index.html">sign-up-form</a>
+        <h2>Web hammer assignments</h2>
+            <a href="webhammer-asgn/1/index.html">1</a>
+            <a href="webhammer-asgn/2/index.html">2</a>
+            <a href="webhammer-asgn/3/index.html">3</a>
+            <a href="webhammer-asgn/4/index.html">4</a>
+            <a href="webhammer-asgn/5/index.html">5</a>
+            <a href="webhammer-asgn/6/index.html">6</a>
+            <a href="webhammer-asgn/7/index.html">7</a>
+            <a href="webhammer-asgn/8/index.html">8</a>
+            <a href="webhammer-asgn/9/index.html">9</a>
+            <a href="webhammer-asgn/10/index.html">10</a>
+            <a href="webhammer-asgn/11/index.html">11</a>
+            <a href="webhammer-asgn/12/index.html">12</a>
+            <a href="webhammer-asgn/13/index.html">13</a>
+            <a href="webhammer-asgn/14/index.html">14</a>
+            <a href="webhammer-asgn/15/index.html">15</a>
+            <a href="webhammer-asgn/16/index.html">16</a>
+            <a href="webhammer-asgn/17/index.html">17</a>
+            <a href="webhammer-asgn/18/index.html">18</a>
+            <a href="webhammer-asgn/19/index.html">19</a>
+    </body>
 </html>
