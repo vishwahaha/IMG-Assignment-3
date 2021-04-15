@@ -4,24 +4,19 @@
   <body>
 
     <script>
-      function setCookie(value) {
-        document.cookie = value;
-      }
-      function getCookie() {
-        var decodedCookie = decodeURIComponent(document.cookie);
-        return parseInt(decodedCookie);
-      }
-
-      window.addEventListener("load", () => {
-      var numLoad = getCookie();
-      if (isNaN(numLoad) || numLoads == 0) {
+      var numLoad;
+      if(localStorage.getItem("numload") == null)
         numLoad = 0;
-        setCookie(numLoad+1);
+      else
+        numLoad = Number(localStorage.getItem("numload"));
+      window.addEventListener("load", () => {
+      if (numLoad == 0) {
         document.write("<h1>You have never visited before</h1>");
+        localStorage.setItem("numload", numLoad+1);
       }
       else {
-        setCookie(numLoad+1);
-        document.write("<h1>You have visited"+ numLoad +" times before</h1>");
+        document.write("<h1>You have visited "+ numLoad +" times before</h1>");
+        localStorage.setItem("numload", numLoad+1);
       }
       });
     </script>
