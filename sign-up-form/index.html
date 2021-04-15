@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sign up!</title>
+        <style>
+            html, body {
+                height: 100%;
+                width: 100%;
+                margin: 0;
+                background: linear-gradient(90deg, rgba(5,252,248,1) 0%, rgba(200,4,240,1) 50%, rgba(255,84,0,1) 100%);
+            }
+            form {
+                margin: auto;
+                background-color: rgb(72, 78, 78);
+                color: white;
+                font-size: 1.5rem;
+                width: fit-content;
+                height: fit-content;
+                padding: 3rem;
+                font-family: 'Courier New', Courier, monospace;
+                font-weight: 600;
+                border-radius: 2%;
+                box-shadow: 0px 0px 10px black;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            }
+        </style>
+    </head>
+    <body>
+
+        <form method="POST">
+            <label for="name">Enter name : </label>
+            <input type="text" placeholder="name" name="name" pattern="[a-zA-Z ]+"><br><br>
+
+            <label for="age">Enter age : </label>
+            <input type="text" placeholder="age" name="age" pattern="[0-150]"><br><br>
+
+            <span>Choose your gender : </span>
+            <input type="radio" name="gender" value="male">
+            <label for="male">Male</label>
+            <input type="radio" name="gender" value="female">
+            <label for="female">Female</label>
+            <input type="radio" name="gender" value="other">
+            <label for="other">Other</label><br><br>
+
+            <label for="city">Enter your city : </label>
+            <input type="text" placeholder="city" name="city" pattern="[a-zA-Z ]+"><br><br>
+
+            <label for="email">Enter your email : </label>
+            <input type="email" placeholder="e-mail" name="email"><br><br>
+
+            <label for="phnumber">Enter your phone number : </label>
+            <input type="text" placeholder="phone number" name="phnumber" pattern="\+?(91-)?[6-9][0-9]{9}"><br><br>
+
+            <label for="edu">Choose your educational qualification:</label>
+            <select name="edu">
+              <option value="btech">B.Tech</option>
+              <option value="mtech">M.Tech</option>
+              <option value="studying">Still studying</option>
+            </select><br><br>
+
+            <label for="password">Choose a password : </label>
+            <input type="password" placeholder="password" name="password" id="password"><br><br>
+
+            <label for="cpassword">Confirm your password : </label>
+            <input type="password" placeholder="confirm password" name="cpassword" id="cpassword"><br><br>
+
+            <input type="submit" name="submit" onclick="checkPass()" style="font-size: 1.3rem;">
+        </form>
+
+        <script>
+            var password = document.getElementById("password");
+            var cpassword = document.getElementById("cpassword");
+            function checkPass() {
+                if ( password.value !== cpassword.value ){
+                    cpassword.setCustomValidity("Passwords don't match.");
+                }
+                else 
+                    cpassword.setCustomValidity("");
+            }
+        </script>
+    </body>
+</html>

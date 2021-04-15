@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .circle {
+        font-size: 100px;
+      }
+      .ball-grid {
+        display: grid;
+        gap: 20px;
+        row-gap: 100px;
+        max-width: 60%;
+      }
+      .c0 {
+        grid-column-start: 3;
+        grid-column-end: 4;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        color: orchid;
+      }
+      .c1 {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 2;
+      }
+      .c2 {
+        grid-column-start: 4;
+        grid-column-end: 5;
+        grid-row-start: 1;
+        grid-row-end: 2;
+      }
+      .c6 {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 3;
+      }
+      .c3 {
+        grid-column-start: 5;
+        grid-column-end: 6;
+        grid-row-start: 2;
+        grid-row-end: 3;
+      }
+      .c5 {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
+      }
+      .c4 {
+        grid-column-start: 4;
+        grid-column-end: 5;
+        grid-row-start: 3;
+        grid-row-end: 4;
+      }
+    </style>
+    <script
+      src="https://kit.fontawesome.com/0a964c491f.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="ball-grid">
+      <div class="c1">
+        <i class="fas fa-circle circle"></i>
+      </div>
+      <div class="c2">
+        <i class="fas fa-circle circle"></i>
+      </div>
+      <div class="c3">
+        <i class="fas fa-circle circle"></i>
+      </div>
+      <div class="c4">
+        <i class="fas fa-circle circle"></i>
+      </div>
+      <div class="c5">
+        <i class="fas fa-circle circle"></i>
+      </div>
+      <div class="c6">
+        <i class="fas fa-circle circle"></i>
+      </div>
+      <div class="c0">
+        <i class="fas fa-circle circle"></i>
+      </div>
+    </div>
+
+    <script>
+      var counter = 0;
+      var pause = false;
+
+      var circles = document.getElementsByClassName("circle");
+      for (let i = 0; i < circles.length; i++) {
+        circles[i].addEventListener("mouseover", () => {
+          pause = true;
+        });
+        circles[i].addEventListener("mouseleave", () => {
+          pause = false;
+        });
+      }
+      setInterval(() => {
+        if (!pause) {
+          if (counter < 6) counter++;
+          document.getElementsByClassName("c" + counter)[0].style.color ="orange";
+          for (let i = 1; i < 7; i++) {
+            if (i != counter)
+              document.getElementsByClassName("c" + i)[0].style.color = "black";
+          }
+          if (counter === 6) counter = 0;
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>

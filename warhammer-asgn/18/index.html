@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    <img
+      id="myimg1"
+      onclick="newWindows()"
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzJH-lw5wdq2C2LTtgBKk639JLJvdlXu9HjA&usqp=CAU"
+    />
+    <button type="button" onclick="closeWindow()">Close</button>
+    <script>
+      var winC;
+      function newWindows(url) {
+        winC = window.open(url, "", "width=300, height=300, top=" + (screen.height - 300) / 2 + ", left=" + (screen.width - 300) / 2);
+        winTL = window.open(url, "","width=300, height=300, top=0, left=0");
+        winTR = window.open(url, "","width=300, height=300, top=0, left="+(screen.width-300));
+        winBL = window.open(url, "","width=300, height=300, top="+(screen.height-300)+", left=0");
+        winBR = window.open(url, "","width=300, height=300, top="+(screen.height-300)+", left="+(screen.width-300));
+        let ranH = Math.floor(Math.random()*screen.height);
+        let ranW = Math.floor(Math.random()*screen.width);
+        winR = window.open(url, "", "width=300, height=300, top="+(ranH-150)+", left="+(ranW-150));
+      }
+      window.addEventListener("beforeunload", () => {
+        winC.close();
+        winTL.close();
+        winTR.close();
+        winBL.close();
+        winBR.close();
+        winR.close();
+      });   
+    </script>
+  </body>
+</html>

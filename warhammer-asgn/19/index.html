@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+
+    <script>
+      function setCookie(value) {
+        document.cookie = value;
+      }
+      function getCookie() {
+        var decodedCookie = decodeURIComponent(document.cookie);
+        return parseInt(decodedCookie);
+      }
+
+      window.addEventListener("load", () => {
+      var numLoad = getCookie();
+      if (isNaN(numLoad) || numLoads == 0) {
+        numLoad = 0;
+        setCookie(numLoad+1);
+        document.write("<h1>You have never visited before</h1>");
+      }
+      else {
+        setCookie(numLoad+1);
+        document.write("<h1>You have visited"+ numLoad +" times before</h1>");
+      }
+      });
+    </script>
+  </body>
+</html>

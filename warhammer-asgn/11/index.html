@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <img id="myimg" onclick="foo1()" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzJH-lw5wdq2C2LTtgBKk639JLJvdlXu9HjA&usqp=CAU">
+
+        <script>
+            const image = document.getElementById("myimg");
+            function foo1() {
+                image.setAttribute("src", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARkAAACzCAMAAACKPpgZAAAAXVBMVEUAAAD///8uLi739/fGxsbd3d1qamqurq6amprQ0NAbGxsZGRlZWVlfX1+AgIDNzc08PDwSEhKioqK0tLQMDAxRUVHm5uapqanx8fG/v79MTEyVlZV5eXmGhoZBQUFVIboGAAABBklEQVR4nO3Z0U7CMBSA4SmisokThOlEfP/H1LXLTExObxuz77vqKTenf0JCQtMAAAAAAAAAAAAAAAAAAAAAAAAAAAD/xWmfvNTeo4627bquPSzzIc1t/uwmOdbararb/PjX5aLPF+ncbdZcJj/+Ybm4S/MmnZWJyqz721Qqc3qeXM+1lquqWGbVlImUy4zbH8O+0m51lcts03Bfabe65jJvy8WoTDaXGfpd1r8rk81l/lJGmZAyEWUic5nx/JR97JTJ/J6JKBNRJqJMRJmIMhFlIspElIkU/29qhhWXaS+Pk9/Hf6b5kofrdD5+VdoNAAAAAAAAAAAAAAAAAAAAAAAAAICV+wae3gkHXVlSnQAAAABJRU5ErkJggg==");
+            }
+        </script>
+    </body>
+</html>
