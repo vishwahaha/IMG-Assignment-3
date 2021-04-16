@@ -27,16 +27,34 @@
                 left: 0;
                 right: 0;
             }
+            .invalid {
+                font-weight: 900;
+                color: rgb(241, 130, 120);
+                margin-left: 1rem;
+                font-size: 1.3rem;
+                display: none;
+            }
+            .show {
+                display: initial !important;
+            }
+            .confirm-pass {
+                display: none;
+                margin-left: 1rem;
+            }
         </style>
     </head>
     <body>
 
         <form method="POST" onsubmit="return false">
             <label for="name">Enter name : </label>
-            <input type="text" placeholder="name" name="name" pattern="[a-zA-Z ]+"><br><br>
+            <input type="text" placeholder="name" name="name" id="namebox">
+            <span class="invalid" id="nameWarning">Invalid input</span>
+            <br><br>
 
             <label for="age">Enter age : </label>
-            <input type="text" placeholder="age" name="age" pattern="[0-150]"><br><br>
+            <input type="number" placeholder="age" name="age" id="agebox">
+            <span class="invalid" id="ageWarning">Invalid input</span>
+            <br><br>
 
             <span>Choose your gender : </span>
             <input type="radio" name="gender" value="male">
@@ -47,13 +65,19 @@
             <label for="other">Other</label><br><br>
 
             <label for="city">Enter your city : </label>
-            <input type="text" placeholder="city" name="city" pattern="[a-zA-Z ]+"><br><br>
+            <input type="text" placeholder="city" name="city" id="citybox">
+            <span class="invalid" id="cityWarning">Invalid input</span>
+            <br><br>
 
             <label for="email">Enter your email : </label>
-            <input type="email" placeholder="e-mail" name="email"><br><br>
+            <input type="text" placeholder="e-mail" name="email" id="emailbox">
+            <span class="invalid" id="emailWarning">Invalid input</span>
+            <br><br>
 
             <label for="phnumber">Enter your phone number : </label>
-            <input type="text" placeholder="phone number" name="phnumber" pattern="\+?(91-)?[6-9][0-9]{9}"><br><br>
+            <input type="text" placeholder="phone number" name="phnumber" id="phnumberbox">
+            <span class="invalid" id="phnumberWarning">Invalid input</span>
+            <br><br>
 
             <label for="edu">Choose your educational qualification:</label>
             <select name="edu">
@@ -66,21 +90,90 @@
             <input type="password" placeholder="password" name="password" id="password"><br><br>
 
             <label for="cpassword">Confirm your password : </label>
-            <input type="password" placeholder="confirm password" name="cpassword" id="cpassword"><br><br>
+            <input type="password" placeholder="confirm password" name="cpassword" id="cpassword">
+            <span id="passConfirm" class="confirm-pass"></span>
+            <br><br>
 
-            <input type="submit" name="submit" onclick="checkPass()" style="font-size: 1.3rem;">
+            <input type="submit" name="submit" style="font-size: 1.3rem;">
         </form>
 
         <script>
+
+            var namebox = document.getElementById("namebox");
+            namebox.addEventListener("input", ()=> {
+                let name = new RegExp("^([a-zA-Z '\.])+$");
+                let isMatch = name.test(namebox.value);
+                if(!isMatch && namebox.value.length != 0){
+                    document.getElementById("nameWarning").classList.add("show");
+                }
+                if (isMatch || namebox.value.length == 0){
+                    document.getElementById("nameWarning").classList.remove("show");
+                }
+            });
+
+            var agebox = document.getElementById("agebox");
+            agebox.addEventListener("input", () => {
+                let age = Number(agebox.value);
+                if( (age<0 || age>150) && agebox.value.length != 0){
+                    document.getElementById("ageWarning").classList.add("show");
+                }
+                else if( (age >= 0 && age <= 150) || agebox.value.length == 0 ){
+                    document.getElementById("ageWarning").classList.remove("show");
+                }
+            });   
+
+            var citybox = document.getElementById("citybox");
+            citybox.addEventListener("input", ()=> {
+                let city = new RegExp("^([a-zA-Z '\.])+$");
+                let isMatch = city.test(citybox.value);
+                if(!isMatch && citybox.value.length != 0){
+                    document.getElementById("cityWarning").classList.add("show");
+                }
+                if (isMatch || citybox.value.length == 0){
+                    document.getElementById("cityWarning").classList.remove("show");
+                }
+            });
+
+            var emailbox = document.getElementById("emailbox");
+            emailbox.addEventListener("input", ()=> {
+                let email = new RegExp("^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9])+\.)+([a-zA-Z0-9]{2,5})+$");
+                let isMatch = email.test(emailbox.value);
+                if(!isMatch && emailbox.value.length != 0){
+                    document.getElementById("emailWarning").classList.add("show");
+                }
+                if (isMatch || emailbox.value.length == 0){
+                    document.getElementById("emailWarning").classList.remove("show");
+                }
+            });
+
+            var phbox = document.getElementById("phnumberbox");
+            phbox.addEventListener("input", () => {
+                let phnumber = new RegExp(/^((\+91-)?[6-9][0-9]{9})$/);
+                let isMatch = phnumber.test(phbox.value);
+                if(!isMatch && phbox.value.length != 0){
+                    document.getElementById("phnumberWarning").classList.add("show");
+                }
+                if (isMatch || phbox.value.length == 0){
+                    document.getElementById("phnumberWarning").classList.remove("show");
+                }
+            });
+
             var password = document.getElementById("password");
             var cpassword = document.getElementById("cpassword");
-            function checkPass() {
-                if ( password.value !== cpassword.value ){
-                    cpassword.setCustomValidity("Passwords don't match.");
+            var passCheck = document.getElementById("passConfirm");
+            cpassword.addEventListener("input", () => {
+                if (cpassword.value.length == 0){
+                    passCheck.classList.remove("show");
                 }
-                else 
-                    cpassword.setCustomValidity("");
-            }
+                else if ( cpassword.value === password.value && cpassword.value.length != 0){
+                    passCheck.classList.add("show");
+                    passCheck.innerHTML = "✅";
+                }
+                else if ( cpassword.value !== password.value && cpassword.value.length != 0){
+                    passCheck.classList.add("show");
+                    passCheck.innerHTML = "❌";
+                }
+            });
         </script>
     </body>
 </html>
